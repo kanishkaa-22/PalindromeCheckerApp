@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
@@ -10,7 +11,7 @@ public class PalindromeCheckerApp {
         String input = sc.nextLine();
 
         PalindromeCheckerApp obj = new PalindromeCheckerApp();
-        boolean result = obj.checkPalindrome(input);
+        boolean result = obj.check(input);
 
         System.out.println("Is Palindrome? : " + result);
 
@@ -18,25 +19,25 @@ public class PalindromeCheckerApp {
     }
 
     /**
-     * Checks whether a string is palindrome
+     * Checks whether a string is palindrome using stack
      * @param input input string
      * @return true if palindrome, false otherwise
      */
-    public boolean checkPalindrome(String input) {
+    public boolean check(String input) {
 
-        // Initialize pointers
-        int start = 0;
-        int end = input.length() - 1;
+        // Create a stack
+        Stack<Character> stack = new Stack<>();
 
-        // Compare characters moving inward
-        while (start < end) {
+        // Push characters into stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
-            if (input.charAt(start) != input.charAt(end)) {
+        // Compare characters with stack
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
             }
-
-            start++;
-            end--;
         }
 
         return true;
