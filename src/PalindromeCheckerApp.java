@@ -1,18 +1,7 @@
-/**
- * Logic using method recursion.
- *
- * @author Developer
- * @version 0.0
- */
-
 import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point for UCP.
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -20,34 +9,22 @@ public class PalindromeCheckerApp {
         System.out.print("Input : ");
         String input = sc.nextLine();
 
-        boolean result = check(input, 0, input.length() - 1);
+        // Normalize string (remove spaces and convert to lowercase)
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
 
-        System.out.println("Is Palindrome? : " + result);
+        boolean isPalindrome = true;
+
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Is Palindrome? : " + isPalindrome);
 
         sc.close();
-    }
-
-    /**
-     * Recursively checks whether a string is palindrome.
-     *
-     * @param s Input string
-     * @param start Starting index
-     * @param end Ending index
-     * @return true if palindrome, otherwise false
-     */
-    private static boolean check(String s, int start, int end) {
-
-        // Base case
-        if (start >= end) {
-            return true;
-        }
-
-        // If characters don't match
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return check(s, start + 1, end - 1);
     }
 }
