@@ -1,28 +1,26 @@
+import java.util.*;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        String input = "radar";
+        String input = "level";
 
-        // Convert string to character array
-        char[] chars = input.toCharArray();
+        // Create LinkedList
+        LinkedList<Character> list = new LinkedList<>();
 
-        // Pointer at beginning
-        int start = 0;
+        // Add characters to the list
+        for (char c : input.toCharArray()) {
+            list.add(c);
+        }
 
-        // Pointer at end
-        int end = chars.length - 1;
-
-        // Assume palindrome initially
+        // Flag for palindrome
         boolean isPalindrome = true;
 
-        // Compare characters until pointers meet
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Compare first and last characters
+        while (list.size() > 1) {
+            if (!list.removeFirst().equals(list.removeLast())) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         // Output
