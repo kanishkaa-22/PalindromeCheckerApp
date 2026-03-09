@@ -1,32 +1,37 @@
+
+import java.util.*;
+
 public class PalindromeCheckerApp {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        String input = "radar";
+            // Define the input string
+            String input = "civic";
 
-        // Convert string to character array
-        char[] chars = input.toCharArray();
+            // Create Queue (FIFO)
+            Queue<Character> queue = new LinkedList<>();
 
-        // Pointer at beginning
-        int start = 0;
+            // Create Stack (LIFO)
+            Stack<Character> stack = new Stack<>();
 
-        // Pointer at end
-        int end = chars.length - 1;
-
-        // Assume palindrome initially
-        boolean isPalindrome = true;
-
-        // Compare characters until pointers meet
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                isPalindrome = false;
-                break;
+            // Insert characters into both queue and stack
+            for (char c : input.toCharArray()) {
+                queue.add(c);
+                stack.push(c);
             }
-            start++;
-            end--;
-        }
 
-        // Output
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+            // Flag for palindrome
+            boolean isPalindrome = true;
+
+            // Compare characters
+            while (!queue.isEmpty()) {
+                if (queue.remove() != stack.pop()) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+
+            // Output
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + isPalindrome);
+        }
     }
-}
