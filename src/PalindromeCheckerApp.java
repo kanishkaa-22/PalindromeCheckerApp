@@ -1,30 +1,53 @@
-import java.util.*;
+/**
+ * Logic using method recursion.
+ *
+ * @author Developer
+ * @version 0.0
+ */
+
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
+
+    /**
+     * Application entry point for UCP.
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
 
-        String input = "level";
+        Scanner sc = new Scanner(System.in);
 
-        // Create LinkedList
-        LinkedList<Character> list = new LinkedList<>();
+        System.out.print("Input : ");
+        String input = sc.nextLine();
 
-        // Add characters to the list
-        for (char c : input.toCharArray()) {
-            list.add(c);
+        boolean result = check(input, 0, input.length() - 1);
+
+        System.out.println("Is Palindrome? : " + result);
+
+        sc.close();
+    }
+
+    /**
+     * Recursively checks whether a string is palindrome.
+     *
+     * @param s Input string
+     * @param start Starting index
+     * @param end Ending index
+     * @return true if palindrome, otherwise false
+     */
+    private static boolean check(String s, int start, int end) {
+
+        // Base case
+        if (start >= end) {
+            return true;
         }
 
-        // Flag for palindrome
-        boolean isPalindrome = true;
-
-        // Compare first and last characters
-        while (list.size() > 1) {
-            if (!list.removeFirst().equals(list.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
+        // If characters don't match
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
         }
 
-        // Output
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        // Recursive call
+        return check(s, start + 1, end - 1);
     }
 }
