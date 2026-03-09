@@ -1,28 +1,26 @@
+import java.util.*;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        String input = "radar";
+        String input = "refer";
 
-        // Convert string to character array
-        char[] chars = input.toCharArray();
+        // Create a Deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Pointer at beginning
-        int start = 0;
+        // Add characters to deque
+        for (char c : input.toCharArray()) {
+            deque.add(c);
+        }
 
-        // Pointer at end
-        int end = chars.length - 1;
-
-        // Assume palindrome initially
+        // Flag to track palindrome
         boolean isPalindrome = true;
 
-        // Compare characters until pointers meet
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Compare first and last characters
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         // Output
