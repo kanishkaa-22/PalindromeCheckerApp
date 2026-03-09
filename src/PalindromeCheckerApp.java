@@ -1,28 +1,26 @@
+import java.util.Stack;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        String input = "radar";
+        String input = "noon";
 
-        // Convert string to character array
-        char[] chars = input.toCharArray();
+        // Create stack
+        Stack<Character> stack = new Stack<>();
 
-        // Pointer at beginning
-        int start = 0;
-
-        // Pointer at end
-        int end = chars.length - 1;
+        // Push characters into stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
         // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Compare characters until pointers meet
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Compare with popped characters
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         // Output
